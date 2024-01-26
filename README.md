@@ -1,13 +1,3 @@
-# FLEXIBLE
-
-__Ability to make ‘in-place’ data model changes to a live database without requiring planned downtime for the database or consuming applications__
-
-__SA Maintainer__: [Alejandro Mancilla](mailto:alejandro.mancilla@mongodb.com) <br/>
-__Time to setup__: 15 mins <br/>
-__Time to execute__: 15 mins <br/>
-
-
----
 ## Description
 
 This proof shows how MongoDB can provide a flexible data model (a.k.a. flexible schema) enabling the structures of some existing records to be enhanced with additive changes (e.g. new attributes, new sub-documents), without breaking existing applications (e.g. microservices) and without requiring downtime. This shows how MongoDB can be used to support ever changing agile applications over time, where the database needs to effectively support business change.
