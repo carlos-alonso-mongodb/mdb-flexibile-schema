@@ -1,8 +1,8 @@
 ## Description
 
-This proof shows how MongoDB can provide a flexible data model (a.k.a. flexible schema) enabling the structures of some existing records to be enhanced with additive changes (e.g. new attributes, new sub-documents), without breaking existing applications (e.g. microservices) and without requiring downtime. This shows how MongoDB can be used to support ever changing agile applications over time, where the database needs to effectively support business change.
+This exercise shows how MongoDB can provide a flexible data model (a.k.a. flexible schema) enabling the structures of some existing records to be enhanced with additive changes (e.g. new attributes, new sub-documents), without breaking existing applications (e.g. microservices) and without requiring downtime. This shows how MongoDB can be used to support ever changing agile applications over time, where the database needs to effectively support business change.
 
-For this proof, a set of randomly generated employee records are used, and two continuously running scripts are run, whilst changes to the data model are dynamically made, to simulate two running microservices that are consuming the database's data.
+For this exercise, a set of randomly generated employee records are used, and two continuously running scripts are run, whilst changes to the data model are dynamically made, to simulate two running microservices that are consuming the database's data.
 
 
 ---
@@ -17,17 +17,16 @@ __1. Configure Laptop__
   ```
 
 __2. Configure Atlas Environment__
-* If using standard remote demo environment, use this doc and skip these instructions. https://docs.google.com/document/d/1cWyqMbJ_cQP3j7S4FJQhjRRiKq9WPfwPG6BmJL2bMvY/edit
-* Log-on to your [Atlas account](http://cloud.mongodb.com) (using the MongoDB SA preallocated Atlas credits system) and navigate to your SA project
+* Log-on to your [Atlas account](http://cloud.mongodb.com) 
 * In the project's Security tab, choose to add a new user called __main_user__, and for __User Privileges__ specify __Read and write to any database__ (make a note of the password you specify)
-* Create an __M10__ based 3 node replica-set in a single cloud provider region of your choice with default settings
+* Create an MongoDB Atlas Cluster based 3 node replica-set in a single cloud provider region of your choice with default settings
 * In the Security tab, add a new __IP Whitelist__ for your laptop's current IP address
 * In the Atlas console, for the database cluster you deployed, click the __Connect button__, select __Connect Your Application__, and for the __latest Python version__  copy the __Connection String Only__ - make a note of this MongoDB URL address to be used later
 
 ---
 ## Execution
 
-* Overwrite the following variables in the [demo_settings.py](demo_settings.py) python script file on your local filesystem, with the values of your Atlas URI string (including both username & password), and __importantly__ to set the collection name to a value that identifies you, the SA, as the new collection owner (e.g. "John_Smith").
+* Overwrite the following variables in the [demo_settings.py](demo_settings.py) python script file on your local filesystem, with the values of your Atlas URI string (including both username & password), and set the collection name to whatever value you consider (by default it's called "First_Last").
   ```
   URI_STRING = "YOUR_ATLAS_URI_STRING"
   NUM_ITEMS = 10000
@@ -65,11 +64,11 @@ __2. Configure Atlas Environment__
 
 
 ---
-## Measurement
+## Conclusion
 
-By showing the continuous terminal/shell output, you can explain  throughout whole execution process, that first microservice continues to run successfully despite data model changes have been applied to documents in collection of employeees. Explain that current running script does not break and continues to successfully run during and after addition of the new attributes and sub-documents. Finally,  show second microservice working perfectly and retrieves all the data attributes it requires (both original data attributes and also newly added ones).
+By showing the continuous terminal/shell output, you can see that first microservice continues to run successfully despite data model changes have been applied to documents in collection of employeees. Current running script does not break and continues to successfully run during and after addition of the new attributes and sub-documents. Finally, second microservice works perfectly and retrieves all the data attributes it requires (both original data attributes and also newly added ones).
 
-Please be sure to drop the collections at the end of your PoV.
+You can drop the collections at the end of your exercise using:
 ```bash
 ./clean_environment.py
 ```
